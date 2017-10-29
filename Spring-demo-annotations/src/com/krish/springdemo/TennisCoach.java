@@ -1,0 +1,69 @@
+package com.krish.springdemo;
+
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+//@Component("thatSillyCoach")
+
+@Component
+//@Scope("prototype")
+public class TennisCoach implements Coach{
+	//@Autowired
+	//@Qualifier("randomFortuneService")
+	//@Qualifier("RESTFortuneService")
+	private FortuneService theFortuneService;
+	@Value("${foo.email}")
+	private String email;
+	@Value("${foo.team}")
+	private String team;
+	
+	/*@Autowired
+	 * @Qualifier("happyFortuneService")
+	public void setFortuneService(FortuneService theFortuneService) {
+		this.theFortuneService = theFortuneService;
+	}*/
+	/*@Autowired
+	 * @Qualifier("happyFortuneService")
+	public void doSomeCrazyStuff(FortuneService theFortuneService) {
+		this.theFortuneService = theFortuneService;
+	}*/
+
+	@Autowired
+	public TennisCoach(@Qualifier("randomFortuneService") FortuneService theFortuneService) {
+		super();
+		this.theFortuneService = theFortuneService;
+	}
+	@PostConstruct
+	public void doMyStartupStuff() {
+		System.out.println(">> Tennis Coach: Inside doMyStartupStuff");
+	}
+	@PreDestroy
+	public void doMyCleanupStuff() {
+		System.out.println(">> Tennis Coach: Inside doMyCleanupStuff");
+	}
+
+	@Override
+	public String getDailyWorkout() {
+		// TODO Auto-generated method stub
+		return "Practice your backhand volley";
+	}
+	
+	public String getDailyFortune() {
+		return theFortuneService.getFortune();
+	}
+	public String getEmail() {
+		return email;
+	}
+	public String getTeam() {
+		return team;
+	}
+	
+	
+
+}

@@ -1,0 +1,10 @@
+package com.krish.springdemo;
+
+public class BaseballCoach implements Co {
+	
+	@Override
+	public String getDailyWorkout() {
+		return "Spend 30 min on batting practice";
+	}
+
+}

@@ -1,0 +1,44 @@
+package com.krish.springdemo;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+
+//@Component("thatSillyCoach")
+
+@Component
+public class TennisCoach implements Coach{
+	//@Autowired
+	//@Qualifier("randomFortuneService")
+	//@Qualifier("RESTFortuneService")
+	private FortuneService theFortuneService;
+	
+	/*@Autowired
+	 * @Qualifier("happyFortuneService")
+	public void setFortuneService(FortuneService theFortuneService) {
+		this.theFortuneService = theFortuneService;
+	}*/
+	/*@Autowired
+	 * @Qualifier("happyFortuneService")
+	public void doSomeCrazyStuff(FortuneService theFortuneService) {
+		this.theFortuneService = theFortuneService;
+	}*/
+
+	@Autowired
+	public TennisCoach(@Qualifier("happyFortuneService") FortuneService theFortuneService) {
+		super();
+		this.theFortuneService = theFortuneService;
+	}
+
+	@Override
+	public String getDailyWorkout() {
+		// TODO Auto-generated method stub
+		return "Practice your backhand volley";
+	}
+	
+	public String getDailyFortune() {
+		return theFortuneService.getFortune();
+		
+	}
+
+}

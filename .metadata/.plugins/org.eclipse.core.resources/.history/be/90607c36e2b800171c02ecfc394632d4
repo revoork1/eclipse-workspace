@@ -1,0 +1,39 @@
+package com.krish.springdemo;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+//@Component("thatSillyCoach")
+
+@Component
+public class TennisCoach implements Coach{
+	//@Autowired
+	private FortuneService theFortuneService;
+	
+	@Autowired
+	public void setFortuneService(FortuneService theFortuneService) {
+		this.theFortuneService = theFortuneService;
+	}
+	
+	public void doSomeCrazyStuff() {
+		
+	}
+
+	//@Autowired
+	/*public TennisCoach(FortuneService theFortuneService) {
+		super();
+		this.fortuneService = theFortuneService;
+	}*/
+
+	@Override
+	public String getDailyWorkout() {
+		// TODO Auto-generated method stub
+		return "Practice your backhand volley";
+	}
+	
+	public String getDailyFortune() {
+		return theFortuneService.getFortune();
+		
+	}
+
+}

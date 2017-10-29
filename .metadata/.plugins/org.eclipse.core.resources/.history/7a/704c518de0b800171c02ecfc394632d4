@@ -1,0 +1,13 @@
+package com.krish.springdemo;
+
+import org.springframework.stereotype.Component;
+
+public class TestFortune implements FortuneService {
+
+	@Override
+	public String getFortune() {
+		// TODO Auto-generated method stub
+		return "Test";
+	}
+
+}

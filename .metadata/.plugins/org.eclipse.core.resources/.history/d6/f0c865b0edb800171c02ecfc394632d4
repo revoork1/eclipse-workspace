@@ -1,0 +1,56 @@
+package com.krish.springdemo;
+
+import javax.annotation.PostConstruct;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+//@Component("thatSillyCoach")
+
+@Component
+//@Scope("prototype")
+public class TennisCoach implements Coach{
+	//@Autowired
+	//@Qualifier("randomFortuneService")
+	//@Qualifier("RESTFortuneService")
+	private FortuneService theFortuneService;
+	
+	/*@Autowired
+	 * @Qualifier("happyFortuneService")
+	public void setFortuneService(FortuneService theFortuneService) {
+		this.theFortuneService = theFortuneService;
+	}*/
+	/*@Autowired
+	 * @Qualifier("happyFortuneService")
+	public void doSomeCrazyStuff(FortuneService theFortuneService) {
+		this.theFortuneService = theFortuneService;
+	}*/
+
+	@Autowired
+	public TennisCoach(@Qualifier("happyFortuneService") FortuneService theFortuneService) {
+		super();
+		this.theFortuneService = theFortuneService;
+	}
+	@PostConstruct
+	public void doMyStartupStuff() {
+		System.out.println(">> Tennis Coach: Inside doMyStartupStuff");
+	}
+	
+	public void doMyDestroyStuff() {
+		
+	}
+
+	@Override
+	public String getDailyWorkout() {
+		// TODO Auto-generated method stub
+		return "Practice your backhand volley";
+	}
+	
+	public String getDailyFortune() {
+		return theFortuneService.getFortune();
+		
+	}
+
+}
