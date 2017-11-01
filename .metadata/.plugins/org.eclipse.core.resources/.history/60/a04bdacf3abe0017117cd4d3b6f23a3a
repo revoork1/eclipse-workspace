@@ -1,0 +1,14 @@
+package com.krish.springdemo;
+
+public class HelloWorldController {
+	
+	public String showForm() {
+		return null;
+		
+	}
+	
+	public String processForm() {
+		return null;
+	}
+
+}
