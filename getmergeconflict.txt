@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 Modified in Local
+=======
+Edited in web page
+>>>>>>> 38422a26b59f54d5e6370db7fa35ad751f661fbb
